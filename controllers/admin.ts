@@ -25,6 +25,19 @@ export class AdminController {
     })(req, res, next);
   }
 
+  //logout
+  static async logout(req: Request, res: Response, next: NextFunction) {
+    req.logout((err) => {
+      if (err) return next(err);
+      req.session.destroy((err) => {
+        if (err) return next(err);
+        res.clearCookie("connect.sid");
+
+        return res.json({ message: "Deslogado com sucesso" });
+      });
+    });
+  }
+
   //registrar
   static async register(req: Request, res: Response): Promise<any> {
     const { userName, senha } = req.body;

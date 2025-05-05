@@ -16,9 +16,9 @@ type adminType = {
 };
 
 type apiLiturgy = {
-  id: number;
+  id?: number;
   tema: string;
-  subtema: string;
+  subtema?: string;
   versiculo: string;
   louvoresIniciais: [
     {
