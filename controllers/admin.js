@@ -1,14 +1,10 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
-import Admin from "../models/admin";
-import Liturgy from "../models/liturgy";
-const bcrypt = require("bcrypt");
-import passport from "passport";
-import { apiLiturgy } from "../types";
+const Admin = require("../models/admin");
+const Liturgy = require("../models/liturgy");
+const passport = require("passport");
 
-export class AdminController {
-  //logar
-  static async login(req: Request, res: Response, next: NextFunction) {
-    passport.authenticate("local", (err: any, user: any, info: any) => {
+class AdminController {
+  static async login(req, res, next) {
+    passport.authenticate("local", (err, user, info) => {
       if (err) return next(err);
       if (!user) {
         return res
@@ -25,21 +21,18 @@ export class AdminController {
     })(req, res, next);
   }
 
-  //logout
-  static async logout(req: Request, res: Response, next: NextFunction) {
+  static async logout(req, res, next) {
     req.logout((err) => {
       if (err) return next(err);
       req.session.destroy((err) => {
         if (err) return next(err);
         res.clearCookie("connect.sid");
-
         return res.json({ message: "Deslogado com sucesso" });
       });
     });
   }
 
-  //registrar
-  static async register(req: Request, res: Response): Promise<any> {
+  static async register(req, res) {
     const { userName, senha } = req.body;
 
     if (!userName || !senha) {
@@ -60,9 +53,8 @@ export class AdminController {
   }
 }
 
-export class LiturgyController {
-  //retorna a programação que está no bando de dados (antes de ser alterado)
-  static async getLiturgyDB(req: Request, res: Response): Promise<any> {
+class LiturgyController {
+  static async getLiturgyDB(req, res) {
     try {
       const liturgyBefore = await Liturgy.findOne({ id: 1 });
 
@@ -78,9 +70,8 @@ export class LiturgyController {
     }
   }
 
-  //
-  static async postLiturgy(req: Request, res: Response): Promise<any> {
-    const body: apiLiturgy = req.body;
+  static async postLiturgy(req, res) {
+    const body = req.body;
 
     try {
       let oldLiturgy = await Liturgy.findOne({ id: 1 });
@@ -103,7 +94,6 @@ export class LiturgyController {
           });
       }
 
-      // Usando upsert para garantir que o documento seja criado se não existir
       const updatedLiturgy = await Liturgy.findOneAndUpdate({ id: 1 }, body, {
         upsert: true,
         new: true,
@@ -123,3 +113,8 @@ export class LiturgyController {
     }
   }
 }
+
+module.exports = {
+  AdminController,
+  LiturgyController,
+};

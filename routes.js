@@ -1,5 +1,5 @@
-import express from "express";
-import { AdminController, LiturgyController } from "./controllers/admin";
+const express = require("express");
+const { AdminController, LiturgyController } = require("./controllers/admin");
 const router = express.Router();
 
 router.post("/login", AdminController.login);
@@ -8,4 +8,4 @@ router.post("/register", AdminController.register);
 router.post("/replaceliturgy", LiturgyController.postLiturgy);
 router.get("/getbefore", LiturgyController.getLiturgyDB);
 
-export default router;
+module.exports = router;

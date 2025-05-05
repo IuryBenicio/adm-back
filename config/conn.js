@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-// Conctando ao mongoose
+// Conectando ao mongoose
 async function main() {
   await mongoose
-    .connect(process.env.MONGO_URL as string)
+    .connect(process.env.MONGO_URL)
     .then(() => {
       console.log("Connected to MongoDB");
     })
@@ -15,4 +15,4 @@ async function main() {
 
 main();
 
-export default mongoose;
+module.exports = mongoose;

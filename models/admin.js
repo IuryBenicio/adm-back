@@ -1,5 +1,5 @@
-import mongoose from "../config/conn";
-import { Schema } from "mongoose";
+const mongoose = require("../config/conn");
+const { Schema } = require("mongoose");
 
 const Admin = mongoose.model(
   "Admin",
@@ -15,4 +15,4 @@ const Admin = mongoose.model(
   })
 );
 
-export default Admin;
+module.exports = Admin;

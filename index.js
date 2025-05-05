@@ -1,12 +1,12 @@
-import session from "express-session";
-import dotenv from "dotenv";
-dotenv.config();
-import express, { NextFunction, Request, Response } from "express";
+const express = require("express");
+const session = require("express-session");
+const dotenv = require("dotenv");
 const cors = require("cors");
-import router from "./routes";
-import passport = require("passport");
-import authConfig from "./auth/auth";
+const router = require("./routes");
+const passport = require("passport");
+const authConfig = require("./auth/auth");
 
+dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Methods",
@@ -31,10 +31,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET as string,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 2, httpOnly: true, secure: true }, // 2 horas em milissegundos
+    cookie: { maxAge: 1000 * 60 * 60 * 2, httpOnly: true, secure: true }, // 2 horas
   })
 );
 

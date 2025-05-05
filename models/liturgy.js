@@ -1,5 +1,5 @@
-import mongoose from "../config/conn";
-import { Schema } from "mongoose";
+const mongoose = require("../config/conn");
+const { Schema } = require("mongoose");
 
 const Liturgy = mongoose.model(
   "Liturgy",
@@ -63,4 +63,4 @@ const Liturgy = mongoose.model(
   })
 );
 
-export default Liturgy;
+module.exports = Liturgy;

@@ -1,16 +1,14 @@
-import passport, { PassportStatic } from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
-import { Request, Response, NextFunction } from "express"; // Importar types do express
-import Admin from "../models/admin";
+const LocalStrategy = require("passport-local").Strategy;
+const Admin = require("../models/admin");
 
-export default function (passport: PassportStatic) {
+module.exports = function (passport) {
   passport.use(
     new LocalStrategy(
       {
         usernameField: "userName",
         passwordField: "senha",
       },
-      async (username: string, password: string, done: any) => {
+      async (username, password, done) => {
         try {
           const user = await Admin.findOne({ userName: username });
 
@@ -33,12 +31,12 @@ export default function (passport: PassportStatic) {
     )
   );
 
-  passport.serializeUser((user: any, done) => {
-    done(null, user._id); // guarda só o ID do user na sessão
+  passport.serializeUser((user, done) => {
+    done(null, user._id);
   });
 
   passport.deserializeUser(async (id, done) => {
     const user = await Admin.findById(id);
     done(null, user);
   });
-}
+};
