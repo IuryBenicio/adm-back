@@ -33,7 +33,7 @@ type apiLiturgy = {
       cantor: string;
     }
   ];
-  santaCeia?: string;
+  santaCeia: boolean;
   louvorCeia?: [
     {
       nome: string;

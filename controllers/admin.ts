@@ -86,19 +86,21 @@ export class LiturgyController {
       let oldLiturgy = await Liturgy.findOne({ id: 1 });
 
       if (!oldLiturgy) {
-        try {
-          const newLiturgy = new Liturgy(body);
+        const newLiturgy = new Liturgy(body);
 
-          await newLiturgy.save();
-          return res
-            .status(200)
-            .json({ message: "programação criada com sucesso" });
-        } catch (err) {
-          return res.status(400).json({
-            message: "tivemos um problema ao criar a programação",
-            error: err,
+        await newLiturgy
+          .save()
+          .then(() => {
+            return res
+              .status(200)
+              .json({ message: "programação criada com sucesso" });
+          })
+          .catch((err) => {
+            return res.status(400).json({
+              message: "tivemos um problema ao criar a programação",
+              error: err,
+            });
           });
-        }
       }
 
       // Usando upsert para garantir que o documento seja criado se não existir
@@ -109,7 +111,7 @@ export class LiturgyController {
 
       if (updatedLiturgy) {
         return res
-          .status(200)
+          .status(201)
           .json({ message: "Liturgia atualizada com sucesso" });
       } else {
         return res.status(400).json({

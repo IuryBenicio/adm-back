@@ -39,7 +39,10 @@ const Liturgy = mongoose.model(
         cantor: { type: String },
       },
     ],
-    santaCeia: { type: String },
+    santaCeia: {
+      type: Boolean,
+      default: false,
+    },
     louvorCeia: [
       {
         nome: { type: String },
