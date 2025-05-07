@@ -13,9 +13,6 @@ const Liturgy = mongoose.model(
       type: String,
       required: true,
     },
-    subtema: {
-      type: String,
-    },
     versiculo: {
       type: String,
     },
