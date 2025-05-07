@@ -50,7 +50,7 @@ const Liturgy = mongoose.model(
       {
         titulo: {
           type: String,
-          required: true,
+          // required: true,
         },
         descricao: {
           type: String,
