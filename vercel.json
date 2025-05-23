@@ -1,0 +1,12 @@
+{
+  "build": {
+    "src": "./index.js",
+    "use": "@now/node"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "./routes.js"
+    }
+  ]
+}
