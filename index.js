@@ -7,7 +7,7 @@ const passport = require("passport");
 const authConfig = require("./auth/auth");
 
 dotenv.config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 authConfig(passport);
