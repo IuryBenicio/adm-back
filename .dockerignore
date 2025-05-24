@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 # flyctl launch added from .gitignore
 **\node_modules
 **\.env
 **\.vercel
+=======
+/.git
+/node_modules
+.dockerignore
+.env
+Dockerfile
+>>>>>>> 3c324e4410d535a5fb1688feb267276baddce8cf
 fly.toml
