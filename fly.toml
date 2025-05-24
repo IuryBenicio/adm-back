@@ -1,18 +1,12 @@
-<<<<<<< HEAD
 # fly.toml app configuration file generated for adm-back on 2025-05-24T16:10:44-03:00
-=======
 # fly.toml app configuration file generated for adm-back on 2025-05-23T15:24:48Z
->>>>>>> 3c324e4410d535a5fb1688feb267276baddce8cf
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'adm-back'
-<<<<<<< HEAD
 primary_region = 'gig'
-=======
 primary_region = 'gru'
->>>>>>> 3c324e4410d535a5fb1688feb267276baddce8cf
 
 [build]
 
@@ -28,7 +22,4 @@ primary_region = 'gru'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-<<<<<<< HEAD
-=======
   memory_mb = 1024
->>>>>>> 3c324e4410d535a5fb1688feb267276baddce8cf
